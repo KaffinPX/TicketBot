@@ -1,11 +1,11 @@
 {
   "version": "0.2.0",
-  "description": "A sample Node.js app using Express 4",
+  "description": "Test",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
   },
   "dependencies": {
-    "discord.js": "^7.0.1"
+    "discord.js": "^12.0.0"
   }
 }
