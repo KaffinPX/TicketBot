@@ -33,7 +33,7 @@ client.on('message', message => {
      * added to that. Check the 'raw' event.
      */
     if(message.content.toLowerCase() === '!sendticketembed') {
-        const embed = new discord.RichEmbed();
+        const embed = new discord.MessageEmbed();
         embed.setAuthor(client.user.username, client.user.displayAvatarURL);
         embed.setTitle('Ticket');
         embed.setDescription('React to this message to open a ticket!');
