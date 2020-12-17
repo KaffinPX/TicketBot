@@ -49,7 +49,7 @@ client.on('raw', payload => {
     if(payload.t === 'MESSAGE_REACTION_ADD') { // Check if the event name is MESSAGE_REACTION_ADD
         if(payload.d.emoji.name === ':ticket:') // If the emoji is ticketreact
         {
-            if(payload.d.message_id === '788962803146817587') { // Here we check if the id of the message is the ID of the embed that we had the bot send using the ?sendmsg command.
+            if(payload.d.message_id === '789192534109716580') { // Here we check if the id of the message is the ID of the embed that we had the bot send using the ?sendmsg command.
                 let channel = client.channels.get(payload.d.channel_id) // Get the proper channel object.
                 if(channel.messages.has(payload.d.message_id)) { // Check if the channel has the message in the cache.
                     return;
@@ -134,7 +134,7 @@ client.on('messageReactionAdd', (reaction, user) => {
         // If emoji is checkreact, they are trying to close the ticket.
         if(userTickets.has(user.id)) {
             if(reaction.message.channel.id === userTickets.get(user.id)) {
-                let embed = new discord.RichEmbed();
+                let embed = new discord.MessageEmbed();
                 embed.setDescription("Ticket will be closed in 5 seconds.")
                 reaction.message.channel.send(embed);
                 setTimeout(() => {
@@ -149,7 +149,7 @@ client.on('messageReactionAdd', (reaction, user) => {
         // This case is really for handling tickets that were not closed by the bot due to the bot possibly crashing.
         // In order for this to actually work, the user needs to have a ticket opened already.
         else if(reaction.message.guild.channels.some(channel => channel.name.toLowerCase() === user.username + 's-ticket')) {
-            let embed = new discord.RichEmbed();
+            let embed = new discord.MessageEmbed();
             embed.setDescription("Ticket will be closed in 5 seconds.");
             reaction.message.channel.send(embed);
             setTimeout(() => {
