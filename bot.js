@@ -17,12 +17,12 @@ client.on('message', message => {
      */
     if(message.author.bot) {
         if(message.embeds.length === 1 && message.embeds[0].description.startsWith('React')) {
-            message.react(':ticketreact:625925895013662721')
+            message.react(':ticket:')
             .then(msgReaction => console.log('Reacted.'))
             .catch(err => console.log(err));
         }
         if(message.embeds.length === 1 && message.embeds[0].title === 'Ticket Support') {
-            message.react(':checkreact:625938016510410772')
+            message.react(':x:')
             .then(reaction => console.log("Reacted with " + reaction.emoji.name))
             .catch(err => console.log(err));
         }
@@ -93,7 +93,7 @@ client.on('raw', payload => {
 });
 
 client.on('messageReactionAdd', (reaction, user) => {
-    if(reaction.emoji.name === 'ticketreact') { // If the emoji name is ticketreact, we will create the ticket channel.
+    if(reaction.emoji.name === 'ticket') { // If the emoji name is ticketreact, we will create the ticket channel.
         /**
          * Here we need to check the map to see if the user's id is in there, indicating they have a ticket.
          * We also need to check if there are any other guild channels with their name concatenated with 's-ticket'. We need to 
@@ -131,7 +131,7 @@ client.on('messageReactionAdd', (reaction, user) => {
             }).catch(err => console.log(err));
         }
     }
-    else if(reaction.emoji.name === 'checkreact') {
+    else if(reaction.emoji.name === 'x') {
         // If emoji is checkreact, they are trying to close the ticket.
         if(userTickets.has(user.id)) {
             if(reaction.message.channel.id === userTickets.get(user.id)) {
